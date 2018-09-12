@@ -1,69 +1,69 @@
 console.log('Init app')
 
-// # 8 DOM [Modulo B]
+  // # 8 DOM [Modulo B]
 
-// - 8.1	¿Qué es el árbol de nodos?
-// - 8.2	Objeto `document`
-// - 8.3	Acceso a los nodos
-//    - `getElementById()`
+  // - 8.1	¿Qué es el árbol de nodos?
+  // - 8.2	Objeto `document`
+  // - 8.3	Acceso a los nodos
+  //    - `getElementById()`
 
-// var titleNodo = document.getElementById('title')
+  // var titleNodo = document.getElementById('title')
 
-// var firstName = prompt('Ingresá tu nombre')
+  // var firstName = prompt('Ingresá tu nombre')
 
-// titleNodo.innerHTML = 'Hola ' + firstName + ' ¿cómo andás?'
+  // titleNodo.innerHTML = 'Hola ' + firstName + ' ¿cómo andás?'
 
-// console.log(titleNodo)
+  // console.log(titleNodo)
 
-// setTimeout(function () {
-//   var containerNode = document.getElementById('container')
+  // setTimeout(function () {
+  //   var containerNode = document.getElementById('container')
 
-//   var birthday = prompt('Ingresa el día de tu cumple')
+  //   var birthday = prompt('Ingresa el día de tu cumple')
 
-//   containerNode.innerHTML =
-//     '<h1>Tu cumpleaños es el día: ' + birthday + ' </h1>'
-// }, 2000)
+  //   containerNode.innerHTML =
+  //     '<h1>Tu cumpleaños es el día: ' + birthday + ' </h1>'
+  // }, 2000)
 
-// setTimeout(function () {
-//   var priceNode = document.getElementById('price')
+  // setTimeout(function () {
+  //   var priceNode = document.getElementById('price')
 
-//   var dolarToday = prompt('Cuanto está el dolar hoy?')
+  //   var dolarToday = prompt('Cuanto está el dolar hoy?')
 
-//   priceNode.innerHTML = '$ ' + 60 * dolarToday
-// }, 2000)
+  //   priceNode.innerHTML = '$ ' + 60 * dolarToday
+  // }, 2000)
 
-//    - `getElementsByClassName()`
+  //    - `getElementsByClassName()`
 
-// setTimeout(function () {
-//   var dolarToday = prompt('Dolar hoy?')
+  // setTimeout(function () {
+  //   var dolarToday = prompt('Dolar hoy?')
 
-//   var priceNodes = document.getElementsByClassName('price')
+  //   var priceNodes = document.getElementsByClassName('price')
 
-//   var priceNode
+  //   var priceNode
 
-//   for (var i = 0; i < priceNodes.length; i++) {
-//     priceNode = priceNodes[i]
+  //   for (var i = 0; i < priceNodes.length; i++) {
+  //     priceNode = priceNodes[i]
 
-//     priceNode.innerHTML = '$ ' + dolarToday * priceNode.id
+  //     priceNode.innerHTML = '$ ' + dolarToday * priceNode.id
 
-//     console.log(priceNode.id)
-//   }
-// }, 2000)
+  //     console.log(priceNode.id)
+  //   }
+  // }, 2000)
 
-// - 8.4	Crear y eliminar nodos
-//    - `createElement`
+  - 8.4	Crear y eliminar nodos
+    - `createElement`
 
-// var newGameTitle = prompt('Ingresa tu segundo juego preferido')
+var newGameTitle = prompt('Ingresa tu segundo juego preferido')
 
-// var liNode = document.createElement('li')
+var liNode = document.createElement('li')
 
-// liNode.innerHTML = newGameTitle
+liNode.innerHTML = newGameTitle
 
-// var listNode = document.getElementById('list')
+var listNode = document.getElementById('list')
 
-// listNode.appendChild(liNode)
+listNode.appendChild(liNode)
 
-// var listNode = document.getElementById('list')
+var listNode = document.getElementById('list')
 
 // var gamesTitles = [ 'PES', 'GTA', 'Call of duty', 'FIFA', 'Uncharted' ]
 

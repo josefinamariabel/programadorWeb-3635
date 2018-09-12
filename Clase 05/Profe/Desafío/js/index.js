@@ -5,7 +5,7 @@
  * @param {number} dni
  * @param {string} email
  */
-function Student (firstName, lastName, dni, email) {
+function Student(firstName, lastName, dni, email) {
   // Propiedades privadas
   var id = dni
 
@@ -72,3 +72,7 @@ for (var i = 0; i < oldStudents.length; i++) {
   )
   console.log(newStudent.getId(), newStudent.getFullName())
 }
+
+
+
+

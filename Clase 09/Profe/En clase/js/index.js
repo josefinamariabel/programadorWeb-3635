@@ -62,34 +62,34 @@
 
 // ageNode.onblur = validateAge
 
-// var age2Node = document.getElementById('age2')
+var age2Node = document.getElementById('age2')
 
-// age2Node.oninput = validateAge
+age2Node.oninput = validateAge
 
-// function validateAge (event) {
-//   var inputNode = event.target
+function validateAge(event) {
+  var inputNode = event.target
 
-//   var value = inputNode.value
+  var value = inputNode.value
 
-//   var parsedValue = parseInt(value, 10)
+  var parsedValue = parseInt(value, 10)
 
-//   if (isNaN(parsedValue)) {
-//     inputNode.classList.add('is-invalid')
-//     inputNode.classList.remove('is-valid')
-//   } else if (parsedValue < 18) {
-//     inputNode.classList.add('is-invalid')
-//     inputNode.classList.remove('is-valid')
-//   } else {
-//     inputNode.classList.add('is-valid')
-//     inputNode.classList.remove('is-invalid')
-//   }
-// }
+  if (isNaN(parsedValue)) {
+    inputNode.classList.add('is-invalid')
+    inputNode.classList.remove('is-valid')
+  } else if (parsedValue < 18) {
+    inputNode.classList.add('is-invalid')
+    inputNode.classList.remove('is-valid')
+  } else {
+    inputNode.classList.add('is-valid')
+    inputNode.classList.remove('is-invalid')
+  }
+}
 
 var passwordNode = document.getElementById('password')
 
 passwordNode.oninput = validatePassword
 
-function validatePassword (event) {
+function validatePassword(event) {
   var inputNode = event.target
 
   var value = inputNode.value
