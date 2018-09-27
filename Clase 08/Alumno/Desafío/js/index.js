@@ -9,69 +9,29 @@ var student =
 }
 
 
-//li 
+function createNewStudentNode(newStudent) {
+  var liNode = document.createElement('li')
 
-var liNode = document.createElement('li')
+  liNode.className = 'list-group-item'
 
-liNode.className = 'list-group-item'
+  liNode.id = newStudent.dni
 
-liNode.id = student.dni
+  liNode.innerHTML =
+    'h1' + newStudent.firstName + ' ' + newStudent.lastName + '</h1>'
+
+    + '<h3> Dni: ' + newStudent.dni + '</h3>'
+
+    + '<p> Email: ' + newStudent.email + '</p>'
+
+  return liNode
+
+}
 
 var listNode = document.getElementById('list')
 
-listNode.appendChild(liNode)
+var studentNode = createNewStudentNode(student)
 
-var listNode = document.getElementById('list')
-
-
-
-//h1
-
-var h1Node = document.createElement('h1')
-
-h1Node.innerHTML = student.firstName + student.lastName
-
-var listNode = document.getElementById(student.dni)
-
-listNode.appendChild(h1Node)
-
-var listNode = document.getElementById(student.dni)
-
-//h3
-
-
-var h3Node = document.createElement('h3')
-
-h3Node.innerHTML = student.dni
-
-var listNode = document.getElementById(student.dni)
-
-listNode.appendChild(h3Node)
-
-var listNode = document.getElementById(student.dni)
-
-
-//p
-
-var pNode = document.createElement('p')
-
-pNode.innerHTML = student.email
-
-var listNode = document.getElementById(student.dni)
-
-listNode.appendChild(pNode)
-
-var listNode = document.getElementById(student.dni)
-
-
-
-
-
-
-
-
-
-
+listNode.appendChild(studentNode)
 
 
 

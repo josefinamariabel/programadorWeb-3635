@@ -27,7 +27,7 @@ var students = [
  * @param { Student } newStudent
  * @returns Node
  */
-function createStudentNode (newStudent) {
+function createStudentNode(newStudent) {
   // Creo el nodo li
   var liNode = document.createElement('li')
 
@@ -53,6 +53,7 @@ function createStudentNode (newStudent) {
   // Devuelvo solo el nodo con todos sus datos
   return liNode
 }
+
 var mainListNode = document.getElementById('mainList')
 
 var studentNode

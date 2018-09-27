@@ -89,12 +89,22 @@ var passwordNode = document.getElementById('password')
 
 passwordNode.oninput = validatePassword
 
+<<<<<<< HEAD
 function validatePassword(event) {
+=======
+var buttonNode = document.getElementById('button')
+
+buttonNode.disabled = true
+
+function validatePassword (event) {
+>>>>>>> 84a8c210a49d5ec6c4b189082e9e9555da7f0b45
   var inputNode = event.target
 
   var value = inputNode.value
 
   var regexPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+
+  // var regexPassword = new RegExp('^(?=.*[A-Za-z])(?=.*d)[A-Za-zd]{8,}$')
 
   if (!regexPassword.test(value)) {
     inputNode.classList.add('is-invalid')
