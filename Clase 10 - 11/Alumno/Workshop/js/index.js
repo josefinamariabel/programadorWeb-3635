@@ -1,6 +1,4 @@
-console.log('Init app')
-
-// Globales
+console.log('JOSEFINA')
 
 var LOCAL_KEY = 'studentList'
 
@@ -18,7 +16,7 @@ for (var i = 0; i < studentsList.length; i++) {
   mainListNode.appendChild(student)
 }
 
-// Validar los campos nombre y dni
+// Validar los campos nombre.
 
 var firstNameNode = document.getElementById('firstName')
 
@@ -28,6 +26,17 @@ var dniNode = document.getElementById('dni')
 
 dniNode.onblur = validateDniField
 
+// validar campo de Apellido
+var lastNameNode = document.getElementById('lastName')
+
+lastNameNode.onblur = validateOpcionalField
+
+// validar campo del Email.
+
+var emailNode = document.getElementById('e-mail')
+
+emailNode.onblur = validateEmail
+
 // Agregar el estudiante
 
 var addStudentButtonNode = document.getElementById('addStudentButton')
@@ -36,86 +45,122 @@ addStudentButtonNode.onclick = addStudent
 
 function addStudent() {
   var firstNameValue = firstNameNode.value
+  var lastNameValue = lastNameNode.value
   var dniValue = dniNode.value
+  var emailValue = emailNode.value
 
   var student = {
     firstName: firstNameValue,
-    dni: dniValue
+    lastName: lastNameValue,
+    dni: dniValue,
+    email: emailValue,
+
   }
 
   studentsList.push(student)
 
   setLocalList(LOCAL_KEY, studentsList)
 
-  student = createStudentNode(student)
+  var student = createStudentNode(student)
 
   mainListNode.appendChild(student)
 
   firstName.value = ''
+  lastName.value = ''
   dniNode.value = ''
+  emailNode.value = ''
+
   addStudentButtonNode.disabled = true
+
   firstName.classList.remove('is-valid')
+  lastName.classList.remove('is-valid')
   dniNode.classList.remove('is-valid')
+  emailNode.classList.remove('is-valid')
 }
 
-//Eliminar un estudiante
+
+// Eliminar el estudiante.
+
+var deleteDniNode = document.getElementById('deleteDni')
+
+deleteDniNode.onblur = validateDeleteDni
 
 
+var deleteStudentButtonNode = document.getElementById('deleteStudentButton')
 
-var deteleteDniNode = document.getElementById('deleteStudentButton')
+deleteStudentButtonNode.onclick = deleteStudent
 
-deteleteDniNode.onblur = validateDeleteDniButton
+function deleteStudent() {
+  var inputNodeDelete = document.getElementById('deleteDni')
 
+  var index = searchStudentIndexByDni(inputNodeDelete.value, studentsList)
 
+  studentsList.splice(index, 1)
 
-// function validateDeleteDniButton() {
-//   var deleteStudentButtonNode = document.getElementById('deleteStudentButton')
-//   var inputFields = document.getElementsByClassName('is-valid')
+  setLocalList(LOCAL_KEY, studentsList)
 
-//   if (index > -1) {
-//     deleteStudentButtonNode.disabled = false
-//   } else {
-//     deleteStudentButtonNode.disabled = true
-//   }
-// }
+  var studentNode = document.getElementById(inputNodeDelete.value)
 
+  mainListNode.removeChild(studentNode)
+}
 
+function validateDeleteDni(event) {
+  var deleteStudentButtonNode = document.getElementById('deleteStudentButton')
 
+  var index = searchStudentIndexByDni(event.target.value, studentsList)
+
+  if (index > -1) {
+    deleteStudentButtonNode.disabled = false
+  } else {
+    deleteStudentButtonNode.disabled = true
+  }
+}
 
 
 // Funciones auxiliares
 
-function searchStudentIndexByDni(dni, studentsList) {
-  var student
+function validateSubmitButton() {
+  var addStudentButtonNode = document.getElementById('addStudentButton')
+  var inputFields = document.getElementsByClassName('is-valid')
 
-  for (var i = 0; i < studentsList.length; i++) {
-    student = studentsList[i]
-    if (dni === student.dni) {
-      return i
-    }
+  if (inputFields.length === 4) {
+    addStudentButtonNode.disabled = false
+  } else {
+    addStudentButtonNode.disabled = true
   }
-
-  return -1
 }
 
-
-function validateDeleteDniButton(event) {
-
+function validateOpcionalField(event) {
   var inputNode = event.target
 
-  var index = searchStudentIndexByDni(inputNode.value, studentsList)
+  var value = inputNode.value
 
-  if  index < -1) {
+  if (!value) {
     inputNode.classList.remove('is-valid')
     inputNode.classList.add('is-invalid')
   } else {
     inputNode.classList.remove('is-invalid')
     inputNode.classList.add('is-valid')
   }
-  validateDeleteDniButton()
+
+  validateSubmitButton()
 }
+function validateEmail(event) {
+  var inputNode = event.target
 
+  var value = inputNode.value
 
+  var regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+  if (!regexEmail.test(value)) {
+    inputNode.classList.add('is-invalid')
+    inputNode.classList.remove('is-valid')
+  } else {
+    inputNode.classList.add('is-valid')
+    inputNode.classList.remove('is-invalid')
+  }
+  validateSubmitButton()
+}
 
 function validateDniField(event) {
   var inputNode = event.target
@@ -134,6 +179,17 @@ function validateDniField(event) {
   validateSubmitButton()
 }
 
+function searchStudentIndexByDni(dni, studentsList) {
+  var student
+
+  for (var i = 0; i < studentsList.length; i++) {
+    student = studentsList[i]
+    if (dni === student.dni) {
+      return i
+    }
+  }
+  return -1
+}
 
 function validateRequiredField(event) {
   var inputNode = event.target
@@ -147,17 +203,6 @@ function validateRequiredField(event) {
   }
 
   validateSubmitButton()
-}
-
-function validateSubmitButton() {
-  var addStudentButtonNode = document.getElementById('addStudentButton')
-  var inputFields = document.getElementsByClassName('is-valid')
-
-  if (inputFields.length === 2) {
-    addStudentButtonNode.disabled = false
-  } else {
-    addStudentButtonNode.disabled = true
-  }
 }
 
 function createStudentNode(newStudent) {
@@ -212,3 +257,69 @@ function getLocalList(key) {
     }
   }
 }
+
+
+//BUSCAR 
+
+var searchStudentNode = document.getElementById('searchStudentButton')
+
+searchStudentNode.onclick = validatesearchStudentNode
+
+function validatesearchStudentNode(text, studentsList) {
+  var student
+
+  for (var i = 0; i < studentsList.length; i++) {
+    student = studentsList[i]
+    if (
+      includesText(text, student.firstName) ||
+      includesText(text, student.lastName)
+    ) {
+      return i
+    }
+  }
+  return -1
+}
+
+function includesText(text, baseText) {
+  if (typeof text === 'string' && typeof baseText === 'string') {
+    var textUpperCase = text.toUpperCase()
+    var baseTextUpperCase = baseText.toUpperCase()
+    if (baseTextUpperCase.indexOf(textUpperCase) !== -1) {
+      return true
+    } else {
+      return false
+    }
+  } else {
+    return false
+  }
+}
+
+// crear el li 
+
+var studentsList = getLocalList(LOCAL_KEY)
+
+var searchListNode = document.getElementById('searchList')
+
+function createSearchStudentNode(searchStudent) {
+  // Creo el nodo li que busque 
+
+  var liSeachNode = document.createElement('li')
+
+  // Le agrego el contenido al nodo
+  liSeachNode.innerHTML =
+    '<h1>' +
+    searchStudent.firstName +
+    ' ' +
+    searchStudentlastName +
+    '</h1>' +
+    '<h3>DNI:' +
+    nsearchStudent.dni +
+    '</h3><p class="pepe">E-mail:' +
+    searchStudent.email +
+    '</p>'
+
+  // Devuelvo solo el nodo con todos sus datos
+  return liSeachNode
+}
+
+
