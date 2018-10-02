@@ -99,13 +99,14 @@ $(document).ready(function () {
   //     - Ctrl: 17
   //     - Alt: 18
   //     - Shift: 16
-  $('input').keydown(function (event) {
-    var inputNode = $(this)
 
+  $(Window).keydown(function (event) {
+    var value = $('')
     switch (event.which) {
       case 13:
         event.preventDefault()
-        console.log('Voy a buscar', inputNode.val())
+        console.log('Voy a buscar',
+        )
         break
       case 27:
         inputNode.val('')
