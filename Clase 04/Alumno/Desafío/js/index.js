@@ -1,7 +1,5 @@
-// var name = "jow"
-// console.log(name)
 
-
+console.log("jow")
 
 var studentsList = [
   {
@@ -26,18 +24,33 @@ var studentsList = [
   }
 ]
 
-var name
-var
+
+var name = prompt('Ingrese un nombre')
+console.log(name)
 
 
+function showStudentPosition(name, studentsList) {
 
-function showStudentPosition(studentsList) {
   var student
+
   for (var i = 0; i < studentsList.length; i++) {
     student = studentsList[i]
+    if (name === student.firstName || student.lastName === name) {
+      return i
+    }
   }
+  return -1
+}
 
+var result = showStudentPosition(name, studentsList)
 
+console.log(result)
+
+if (result !== -1) {
+  console.log('Encontré el usuario ' + name + ' en la posición ' + result)
+} else {
+  console.log('No encontré al usuario ' + name)
+}
 
 
 

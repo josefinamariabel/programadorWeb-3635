@@ -116,6 +116,43 @@ function validateDeleteDni(event) {
   }
 }
 
+// busco estudiante
+
+var searchStudentNode = document.getElementById('searchStudentButton')
+
+searchStudentNode.onblur = searchStudentIndexByText
+
+function searchStudentIndexByText(text, studentsList) {
+  var student
+
+  for (var i = 0; i < studentsList.length; i++) {
+    student = studentsList[i]
+    if (
+      includesText(text, student.firstName) ||
+      includesText(text, student.lastName)
+      return i
+  }
+}
+return -1
+}
+
+function includesText(text, baseText) {
+  // Valido que ambos parámetros sean string
+  if (typeof text === 'string' && typeof baseText === 'string') {
+    // Verifico si el primer parámetro se encuentra dentro del segundo
+    var textUpperCase = text.toUpperCase()
+    var baseTextUpperCase = baseText.toUpperCase()
+    if (baseTextUpperCase.indexOf(textUpperCase) !== -1) {
+      return true
+    } else {
+      return false
+    }
+  } else {
+    return false
+  }
+}
+
+
 
 // Funciones auxiliares
 
@@ -259,67 +296,5 @@ function getLocalList(key) {
 }
 
 
-//BUSCAR 
-
-var searchStudentNode = document.getElementById('searchStudentButton')
-
-searchStudentNode.onclick = validatesearchStudentNode
-
-function validatesearchStudentNode(text, studentsList) {
-  var student
-
-  for (var i = 0; i < studentsList.length; i++) {
-    student = studentsList[i]
-    if (
-      includesText(text, student.firstName) ||
-      includesText(text, student.lastName)
-    ) {
-      return i
-    }
-  }
-  return -1
-}
-
-function includesText(text, baseText) {
-  if (typeof text === 'string' && typeof baseText === 'string') {
-    var textUpperCase = text.toUpperCase()
-    var baseTextUpperCase = baseText.toUpperCase()
-    if (baseTextUpperCase.indexOf(textUpperCase) !== -1) {
-      return true
-    } else {
-      return false
-    }
-  } else {
-    return false
-  }
-}
-
-// crear el li 
-
-var studentsList = getLocalList(LOCAL_KEY)
-
-var searchListNode = document.getElementById('searchList')
-
-function createSearchStudentNode(searchStudent) {
-  // Creo el nodo li que busque 
-
-  var liSeachNode = document.createElement('li')
-
-  // Le agrego el contenido al nodo
-  liSeachNode.innerHTML =
-    '<h1>' +
-    searchStudent.firstName +
-    ' ' +
-    searchStudentlastName +
-    '</h1>' +
-    '<h3>DNI:' +
-    nsearchStudent.dni +
-    '</h3><p class="pepe">E-mail:' +
-    searchStudent.email +
-    '</p>'
-
-  // Devuelvo solo el nodo con todos sus datos
-  return liSeachNode
-}
 
 
