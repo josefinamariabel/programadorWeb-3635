@@ -20,7 +20,6 @@ crossroads.addRoute('#/people', function () {
 
 
 crossroads.addRoute('#/local-storage', function () {
-  console.log('LS Page')
   $('#root').load('./partials/local-storage.html', localStorageController)
 
 })
